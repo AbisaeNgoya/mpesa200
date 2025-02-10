@@ -99,7 +99,7 @@ const port = process.env.PORT;
          PartyA: `254${phone}`,
          PartyB: shortCode,
          PhoneNumber: `254${phone}`,
-         CallBackURL: "https://mydomain.com/path",
+         CallBackURL: "https://mpesa200.onrender.com/callback", // Updated callback URL,
          AccountReference: `254${phone}`,
          TransactionDesc: "Test",
 
@@ -159,4 +159,10 @@ const port = process.env.PORT;
     console.error(error.response?.data || error.message);
     res.status(400).json({ error: "Failed to query STK Push status" });
   }
+});
+// Callback route to handle STK push response from Safaricom
+app.post("/callback", (req, res) => {
+  console.log("Callback received:", req.body);
+  // Here, you can process the response from Safaricom and perform necessary actions
+  res.status(200).send("Callback processed");
 });
