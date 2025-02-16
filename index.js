@@ -4,8 +4,9 @@ const app = express();
 require("dotenv").config();
 const cors = require("cors");
 
+
 app.use(cors({
-  origin: "http://localhost:3000", // Update with your React app's origin
+  origin: [ "https://mpesastk-frontend.vercel.app","http://localhost:3000"], // Update with your React app's origin
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
@@ -78,7 +79,7 @@ app.post("/stk", generateToken, async (req, res) => {
         PartyA: `254${phone}`,
         PartyB: shortCode,
         PhoneNumber: `254${phone}`,
-        CallBackURL: "https://mpesa200.onrender.com/callback", // Callback URL
+        CallBackURL: `${process.env.CALLBACK_URL}/callback`, 
         AccountReference: `254${phone}`,
         TransactionDesc: "Test",
       },
